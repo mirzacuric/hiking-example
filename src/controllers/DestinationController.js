@@ -10,7 +10,8 @@ export default class DestinationController {
     destinationService.allPaths()
       .then((paths) => {
         destinationService.findHighestValueFromOptimalPath(paths)
-          .then(val => res.send(val.toString()));
+          .then(val => res.status(200).json(val.toString()))
+          .catch(err => res.status(400).json(new Error(err)));
       })
   }
 }
